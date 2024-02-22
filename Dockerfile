@@ -1,6 +1,5 @@
 FROM registryll.azurecr.io/ti/container/images/dotnet7-build/alpine:stable as build
 ARG ARTIFACTSTOKENNUGET
-RUN dotnet nuget add source https://localiza.pkgs.visualstudio.com/_packaging/LocalizaAtivos%40Local/nuget/v3/index.json -n LocalizaAtivos -u myUsername -p $ARTIFACTSTOKENNUGET --store-password-in-clear-text
 WORKDIR /src
 COPY src .
 WORKDIR /src/TesteNet7OninApi.Api
