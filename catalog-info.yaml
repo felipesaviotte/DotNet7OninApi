@@ -1,0 +1,90 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: teste-net7onin-api
+  description: Teste .net7 onin
+  test: dtl_tribo_meoo
+  annotations:
+    dev.azure.com/project-repo: Tribo Meoo/teste-net7onin-api
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=teste-net7onin-api'
+    sonarqube.org/project-key: teste-net7onin-api
+    kubecost/deployment: teste-net7onin-api
+  embedded:
+    - type: monitoring
+      providers:
+        - provider: grafana
+          templates:
+            - template: kubernetes-pods
+              title: "Kubernetes Pods"
+              metadata:
+                cluster: eks-meoo
+                area: meoo
+                dominio: teste
+                produto: teste
+                aplicacao: teste-net7onin-api
+        - provider: datadog
+          templates:
+            - template: backstage-apm
+              title: "Datadog - APM"
+              metadata:
+                service: teste-net7onin-api
+                service-http-client: teste-net7onin-api
+  links:
+    - url: https://dev.azure.com/localiza/Tribo Meoo/_git/teste-net7onin-api
+      title: Repositório
+      icon: info
+    - url: https://dev.azure.com/localiza/Tribo Meoo/_build?pipelineNameFilter=teste-net7onin-api
+      title: Pipeline
+      icon: info
+    - url: https://sonarcloud.io/project/overview?id=teste-net7onin-api
+      title: Sonar
+      icon: info
+    - url: https://monitoring-aws-np.localiza.dev/d/EMo-8KW4k/kubernetes-pods-backstage?orgId=1&refresh=1m&var-datasource=default&var-cluster=&var-area=ti&var-dominio=teste&var-produto=teste&var-application=teste-net7onin-api&var-ambiente=dev    
+      title: Grafana dev
+      icon: info
+    - url: https://monitoring-aws-np.localiza.dev/d/EMo-8KW4k/kubernetes-pods-backstage?orgId=1&refresh=1m&var-datasource=default&var-cluster=&var-area=ti&var-dominio=teste&var-produto=teste&var-application=teste-net7onin-api&var-ambiente=tst    
+      title: Grafana tst
+      icon: info
+    - url: https://monitoring-aws-prd.localiza.com/d/qAYz52MMz/kubernetes-pods-backstage?orgId=1&refresh=1m&var-datasource=default&var-cluster=&var-area=ti&var-dominio=teste&var-produto=teste&var-application=teste-net7onin-api&var-ambiente=prd    
+      title: Grafana prd
+      icon: info
+    - url: "https://es-meoo-np.localiza.dev/_plugin/kibana/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24w,to:now))&_a=(columns:!(_source),filters:!(),interval:auto,query:(language:kuery,query:%22teste-net7onin-api%22),sort:!())"
+      title: Kibana dev
+      icon: info
+    - url: "https://es-meoo-prd.localiza.com/_plugin/kibana/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24w,to:now))&_a=(columns:!(_source),filters:!(),interval:auto,query:(language:kuery,query:%22teste-net7onin-api%22),sort:!())"
+      title: Kibana prod
+      icon: info
+    - url: "https://dash-eks-meoo-np.localiza.dev/#/search?namespace=meoo-teste-teste-dev&q=teste-net7onin-api"
+      title: Dashboard Kubernetes dev
+      icon: info
+    - url: "https://dash-eks-meoo-np.localiza.dev/#/search?namespace=meoo-teste-teste-tst&q=teste-net7onin-api"
+      title: Dashboard Kubernetes tst
+      icon: info
+    - url: https://eks-meoo-dev.localiza.dev/teste-net7onin-api/health
+      title: Healthcheck dev
+      icon: info
+    - url: https://eks-meoo-tst.localiza.dev/teste-net7onin-api/health
+      title: Healthcheck tst
+      icon: info
+    - url: https://eks-meoo-prd.localiza.com/teste-net7onin-api/health
+      title: Healthcheck prd
+      icon: info
+    - url: https://eks-meoo-dev.localiza.dev/teste-net7onin-api/swagger
+      title: Swagger dev
+      icon: info
+    - url: https://eks-meoo-tst.localiza.dev/teste-net7onin-api/swagger
+      title: Swagger tst
+      icon: info
+    - url: https://app.datadoghq.com/apm/services/teste-net7onin-api/operations/aspnet_core.request
+      title: Datadog webapi
+      icon: info
+
+spec:
+  type: service
+  lifecycle: experimental
+  owner: dtl_tribo_meoo
+  consumesApis:
+    - component:default/stackspot-sample-rest-api-v1
+  dependsOn:
+    - resource:default/eks-meoo

@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+      - '*'
+    exclude:
+      - 'master'
+      - 'main'
+
+resources:
+  repositories:
+    - repository: templatesconfig
+      type: git
+      name: 'Infraestrutura - Localiza Agile/TI.CICD.Configuration'
+      ref: refs/heads/main
+    - repository: templates
+      type: git
+      name: 'Infraestrutura - Localiza Agile/TI.CICD.Templates'
+      ref: refs/tags/7-stable
+    - repository: templatesbackstage
+      type: git
+      name: 'Infraestrutura - Localiza Agile/TI.CICD.Templates.Backstage'
+      ref: refs/tags/2-stable
+    - repository: mudanca
+      type: git
+      name: 'Infraestrutura/OPS.AzureDevOps.GestaoDeMudanca'
+      ref: refs/tags/8-stable

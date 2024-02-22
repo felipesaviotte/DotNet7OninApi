@@ -1,0 +1,8 @@
+site_name: teste-net7onin-api
+site_description: Teste .net7 onin
+
+nav:
+  - Introdução: 'index.md'
+
+plugins:
+  - techdocs-core
